@@ -71,20 +71,20 @@ function HomePage() {
         )}
         {posts.map((post) => {
           return (
-            <div key={post.post_id} className="post">
+            <div key={post.id} className="post">
               <h1>{post.title}</h1>
               <h2>Status: {post.status}</h2>
               <h2>Published Time: {getPublishedDate(post.published_at)}</h2>
               <div className="post-actions">
                 <button
                   className="view-button"
-                  onClick={() => navigate(`/post/view/${post.post_id}`)}
+                  onClick={() => navigate(`/post/view/${post.id}`)}
                 >
                   View post
                 </button>
                 <button
                   className="edit-button"
-                  onClick={() => navigate(`/post/edit/${post.post_id}`)}
+                  onClick={() => navigate(`/post/edit/${post.id}`)}
                 >
                   Edit post
                 </button>
@@ -92,7 +92,7 @@ function HomePage() {
 
               <button
                 className="delete-button"
-                onClick={() => deletePost(post.post_id)}
+                onClick={() => deletePost(post.id)}
               >
                 x
               </button>

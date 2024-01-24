@@ -9,7 +9,7 @@ function ViewPostPage() {
   const navigate = useNavigate();
 
   const getPost = async () => {
-    const results = await axios(`http://localhost:4000/posts/${params.postId}`);
+    const results = await axios(`http://localhost:4001/posts/${params.postId}`);
     setPost(results.data.data);
   };
 
