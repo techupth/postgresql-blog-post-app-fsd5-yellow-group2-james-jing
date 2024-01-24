@@ -9,10 +9,7 @@ postRouter.get("/", async (req, res) => {
   const page = req.query.page;
 
   try {
-    const result = await pool.query("select * from posts limit $1 offset $2", [
-      5,
-      page * 5,
-    ]);
+    const result = await pool.query("select * from posts limit $1 offset $2",[5, page*5]);
 
     return res.json({
       data: result.rows,
@@ -26,9 +23,7 @@ postRouter.get("/:id", async (req, res) => {
   const postId = req.params.id;
 
   try {
-    const result = await pool.query("select * from posts where post_id =$1", [
-      postId,
-    ]);
+    const result = await pool.query("select * from posts where post_id =$1", [postId]);
 
     return res.json({
       data: result.rows,
@@ -74,6 +69,7 @@ postRouter.post("/", async (req, res) => {
 postRouter.put("/:id", async (req, res) => {
   const hasPublished = req.body.status === "published";
 
+
   const updatedPost = {
     ...req.body,
     updated_at: new Date(),
@@ -106,13 +102,15 @@ postRouter.put("/:id", async (req, res) => {
 postRouter.delete("/:id", async (req, res) => {
   const postId = req.params.id;
 
-  try {
-    await pool.query("delete from posts where post_id = $1", [postId]);
+  try{
 
-    return res.json({
-      message: `Post ${postId} has been deleted.`,
-    });
-  } catch {
+  await pool.query("delete from posts where post_id = $1",[postId])
+
+  return res.json({
+    message: `Post ${postId} has been deleted.`,
+  });
+  }
+  catch{
     return res.status(400).json({ message: "error" });
   }
 });

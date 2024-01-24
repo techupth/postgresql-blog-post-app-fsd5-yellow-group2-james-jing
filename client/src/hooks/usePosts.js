@@ -23,6 +23,7 @@ const usePosts = () => {
         `http://localhost:4000/posts?${params.toString()}`
       );
       setPosts(results.data.data);
+    
       setTotalPages(results.data.total_pages);
       setIsLoading(false);
     } catch (error) {

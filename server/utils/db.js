@@ -1,9 +1,9 @@
-// โค้ดนี้อยู่ในไฟล์ server/utils/db.js
+// Creating PostgreSQL Client here
 import * as pg from "pg";
 const { Pool } = pg.default;
 
 const pool = new Pool({
-  connectionString: "postgresql://postgres:postgres@localhost:5432/posts",
+  connectionString: "postgresql://postgres:admin@localhost:5432/HH-Query",
 });
 
 export { pool };
